@@ -1,3 +1,4 @@
+//模块加载
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');//处理文件路径功能
@@ -16,6 +17,11 @@ var authorization = require(path.join(process.cwd(), '/modules/authorization'));
 var logistics = require('./modules/Logistics.js')
 var upload_config = require('config').get('upload_config')
 var ueditor = require(path.join(process.cwd(), '/modules/ueditor'))
+// 获取管理员逻辑模块
+var loginService = require(path.join(process.cwd(), 'services/LoginService'));
+// 获取角色服务模块
+var roleService = require(path.join(process.cwd(), 'services/RoleService'));
+
 
 var app = express();//创建一个 Express 应用。express()是一个由express模块导出的入口（top-level）函数。
 
@@ -34,6 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //路由
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
+// 带路径的用法并且可以打印出路由表
 mount(app, path.join(process.cwd(), '/routes'), true);
 
 // 初始化数据库
@@ -71,7 +78,7 @@ app.use(resextra);
 
 // 初始化 后台登录 passport 策略
 // 设置登录模块的登录函数衔接 passport 策略
-//admin_passport.setup(app, managerService.login);
+admin_passport.setup(app, loginService.login);
 // 设置 passport 登录入口点
 app.use('/login', admin_passport.login);
 // 设置 passport 验证路径
