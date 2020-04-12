@@ -10,6 +10,11 @@ var mount = require('mount-routes')//根据路径来自动加载路由
 // var usersRouter = require('./routes/users');
 var resextra = require('./modules/resextra')
 var admin_passport = require('./modules/passport')
+// 获取验证模块
+var authorization = require(path.join(process.cwd(), '/modules/authorization'));
+// var log4js = require('./modules/logger');
+var logistics = require('./modules/Logistics.js')
+var upload_config = require('config').get('upload_config')
 
 var app = express();//创建一个 Express 应用。express()是一个由express模块导出的入口（top-level）函数。
 
@@ -36,10 +41,8 @@ database.initialize(app, function (err) {
   if (err) {
     console.error('连接数据库失败 %s', err);
   }
-})
+});
 
-// 获取验证模块
-var authorization = require(path.join(process.cwd(), '/modules/authorization'));
 // 设置全局权限
 authorization.setAuthFn(function (req, res, next, serviceName, actionName, passFn) {
   if (!req.userInfo || isNaN(parseInt(req.userInfo.rid))) return res.sendResult('无角色ID分配');
@@ -47,7 +50,7 @@ authorization.setAuthFn(function (req, res, next, serviceName, actionName, passF
   roleService.authRight(req.userInfo.rid, serviceName, actionName, function (err, pass) {
     passFn(pass);
   });
-})
+});
 
 // 设置跨域和相应数据格式
 app.all('/*', function(req, res, next) {
@@ -60,7 +63,7 @@ app.all('/*', function(req, res, next) {
   res.header('X-Powered-By', ' 3.2.1')
   if (req.method == 'OPTIONS') res.send(200)
   /*让options请求快速返回*/ else next()
-})
+});
 
 // 初始化统一响应机制
 app.use(resextra);
@@ -72,6 +75,13 @@ app.use(resextra);
 app.use('/login', admin_passport.login);
 // 设置 passport 验证路径
 app.use('/*', admin_passport.tokenAuth);
+
+// log4js.use(app);
+
+//快递物流查询
+//app.get('/kuaidi/:orderno', logistics.getLogisticsInfo);
+
+app.use('/' + upload_config.get('upload_ueditor'), express.static(upload_config.get('upload_ueditor')));
 
 //原始的模块开始
 // catch 404 and forward to error handler
