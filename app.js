@@ -15,6 +15,7 @@ var authorization = require(path.join(process.cwd(), '/modules/authorization'));
 // var log4js = require('./modules/logger');
 var logistics = require('./modules/Logistics.js')
 var upload_config = require('config').get('upload_config')
+var ueditor = require(path.join(process.cwd(), '/modules/ueditor'))
 
 var app = express();//创建一个 Express 应用。express()是一个由express模块导出的入口（top-level）函数。
 
@@ -81,6 +82,13 @@ app.use('/*', admin_passport.tokenAuth);
 //快递物流查询
 //app.get('/kuaidi/:orderno', logistics.getLogisticsInfo);
 
+// 富文本控件处理qing q
+app.use('/ueditor/ue', ueditor);
+//. 设置富文本空间地址
+app.use('/ueditor', express.static('public/ueditor'));
+app.use('/tmp_uploads', express.static('tmp_uploads'));
+app.use('/x/common', express.static('uploads/common'));
+app.use('/uploads/goodspics', express.static('uploads/goodspics'));
 app.use('/' + upload_config.get('upload_ueditor'), express.static(upload_config.get('upload_ueditor')));
 
 //原始的模块开始
