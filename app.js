@@ -26,8 +26,8 @@ var roleService = require(path.join(process.cwd(), 'services/RoleService'));
 var app = express();//创建一个 Express 应用。express()是一个由express模块导出的入口（top-level）函数。
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));//设置views的目录,__dirname全局变量表示当前执行脚本所在的目录
-app.set('view engine', 'jade');//设置渲染引擎
+//app.set('views', path.join(__dirname, 'views'));//设置views的目录,__dirname全局变量表示当前执行脚本所在的目录
+//app.set('view engine', 'jade');//设置渲染引擎
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))); //设置图标
 //app.use(logger('dev'));//日志设置，使用参见https://github.com/expressjs/morgan
@@ -118,15 +118,15 @@ app.use(function (req, res, next) {
 
 // error handler
 //开发环境错误处理
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function (err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 app.listen(3000, function () {
   console.log('port 3000 start!');

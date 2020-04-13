@@ -3,7 +3,7 @@ var daoModule = require('./DAO');
 var databaseModel = require(path.join(process.cwd(), "modules/database"));
 
 /**
- * 获取权限列表
+ * 获取权限列表:左侧菜单权限
  * @param {*} cb 
  */
 module.exports.list = function (cb) {

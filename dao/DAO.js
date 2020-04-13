@@ -36,3 +36,17 @@ module.exports.selectOne = function (modelName, conditions, cb) {
         return cb(null, obj);
     });
 }
+
+/**
+ * 通过主键ID获取对象
+ * @param {*} modelName 
+ * @param {*} id 
+ * @param {*} cb 
+ */
+module.exports.show = function (modelName, id, cb) {
+    var db = databaseModule.getDatabase();
+    var Model = db.models[modelName];
+    Model.get(id, function (err, obj){
+        cb(err, obj);
+    });
+}
