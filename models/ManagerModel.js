@@ -10,7 +10,7 @@ module.exports = function (db, callback) {
         mg_email: String,
         mg_state: Number
     }, {
-        tabel: "sp_manager"
+        table: "sp_manager"
     });
     return callback();
 }

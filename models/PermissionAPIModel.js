@@ -7,7 +7,7 @@ module.exports = function(db,cb){
         ps_api_action: String,
         ps_api_order: Number
     },{
-        tabel:"sp_permission_api"
+        table:"sp_permission_api"
     });
     return cb();
 }

@@ -36,12 +36,15 @@ function initialize(app, callback) {
                 var loadModelAsynFns = new Array();
                 for (var i = 0; i < files.length; i++) {
                     var modelPath = modelsPath + "/" + files[i];
+                    //console.log("加载模型 %s",modelPath)
                     loadModelAsynFns[i] = db.loadAsync(modelPath);
                 }
                 Promise.all(loadModelAsynFns).then(function () {
+                    //console.log("ORM 模型加载完成");
                     // 挂载模型集合
                     for (var modelName in db.models) {
                         models[modelName] = db.models[modelName];
+                        //console.log(modelName);
                     }
                     app.models = models;
                     callback(null);

@@ -25,7 +25,7 @@ module.exports.create = function (modelName, obj, cb) {
  */
 module.exports.selectOne = function (modelName, conditions, cb) {
     var db = databaseModule.getDatabase();
-    var Model = db.model[modelName];
+    var Model = db.models[modelName];
     if (!Model) return cb("模型不存在", null);
     if (!conditions) return cb("条件为空", null);
     Model.one(conditions, function (err, obj) {
@@ -33,6 +33,6 @@ module.exports.selectOne = function (modelName, conditions, cb) {
         if (err) {
             return cb("查询失败", null);
         }
-        return cd(null, obj);
+        return cb(null, obj);
     });
 }

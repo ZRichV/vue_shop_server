@@ -25,3 +25,153 @@
 [2020-04-13T13:18:43.670] [DEBUG] cheese - login => username:admin, password:123456
 [2020-04-13T13:18:43.672] [DEBUG] cheese - admin
 [2020-04-13T13:18:43.673] [DEBUG] cheese - cccc
+[2020-04-13T13:25:03.773] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:25:03.778] [DEBUG] cheese - admin
+[2020-04-13T13:25:03.896] [DEBUG] cheese - { Error: ER_NO_SUCH_TABLE: Table 'mydb.managermodel' doesn't exist
+    at Query.Sequence._packetToError (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:526:10)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+    --------------------
+    at Protocol._enqueue (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/orm/lib/Drivers/DML/mysql.js:231:9
+    at Ping.onOperationComplete (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:526:10)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sqlMessage: 'Table \'mydb.managermodel\' doesn\'t exist',
+  sqlState: '42S02',
+  index: 0,
+  sql: 'SELECT `mg_id`, `mg_name`, `mg_pwd`, `mg_time`, `role_id`, `mg_mobile`, `mg_email`, `mg_state` FROM `ManagerModel` WHERE `mg_name` = \'admin\' LIMIT 1' }
+[2020-04-13T13:25:03.904] [DEBUG] cheese - 查询失败
+[2020-04-13T13:35:33.827] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:35:33.829] [DEBUG] cheese - admin
+[2020-04-13T13:35:33.876] [DEBUG] cheese - { Error: ER_NO_SUCH_TABLE: Table 'mydb.managermodel' doesn't exist
+    at Query.Sequence._packetToError (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:526:10)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+    --------------------
+    at Protocol._enqueue (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/orm/lib/Drivers/DML/mysql.js:231:9
+    at Ping.onOperationComplete (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/isaackane/Documents/代码/vue/vue_shop_server/node_modules/mysql/lib/Connection.js:526:10)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sqlMessage: 'Table \'mydb.managermodel\' doesn\'t exist',
+  sqlState: '42S02',
+  index: 0,
+  sql: 'SELECT `mg_id`, `mg_name`, `mg_pwd`, `mg_time`, `role_id`, `mg_mobile`, `mg_email`, `mg_state` FROM `ManagerModel` WHERE `mg_name` = \'admin\' LIMIT 1' }
+[2020-04-13T13:35:33.896] [DEBUG] cheese - 查询失败
+[2020-04-13T13:38:00.691] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:38:00.695] [DEBUG] cheese - admin
+[2020-04-13T13:47:37.104] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:47:37.113] [DEBUG] cheese - admin
+[2020-04-13T13:50:03.805] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:50:03.808] [DEBUG] cheese - admin
+[2020-04-13T13:51:02.894] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:51:02.896] [DEBUG] cheese - admin
+[2020-04-13T13:52:24.142] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:52:24.142] [DEBUG] cheese - admin
+[2020-04-13T13:52:31.884] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:52:31.884] [DEBUG] cheese - admin
+[2020-04-13T13:52:45.625] [DEBUG] cheese - login => username:admin, password:12345
+[2020-04-13T13:52:45.625] [DEBUG] cheese - admin
+[2020-04-13T13:54:12.072] [DEBUG] cheese - login => username:admin, password:12345
+[2020-04-13T13:54:12.075] [DEBUG] cheese - admin
+[2020-04-13T13:54:12.106] [DEBUG] cheese - null
+[2020-04-13T13:54:12.112] [DEBUG] cheese - null
+[2020-04-13T13:54:17.591] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:54:17.591] [DEBUG] cheese - admin
+[2020-04-13T13:54:17.598] [DEBUG] cheese - null
+[2020-04-13T13:54:17.599] [DEBUG] cheese - null
+[2020-04-13T13:55:39.910] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T13:55:39.913] [DEBUG] cheese - admin
+[2020-04-13T13:55:39.952] [DEBUG] cheese - null
+[2020-04-13T13:55:39.954] [DEBUG] cheese - null
+[2020-04-13T14:02:44.712] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:02:44.714] [DEBUG] cheese - admin
+[2020-04-13T14:05:11.436] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:05:11.438] [DEBUG] cheese - admin
+[2020-04-13T14:05:42.435] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:05:42.439] [DEBUG] cheese - admin
+[2020-04-13T14:06:13.707] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:06:13.710] [DEBUG] cheese - admin
+[2020-04-13T14:06:42.949] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:06:42.953] [DEBUG] cheese - admin
+[2020-04-13T14:07:03.849] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:07:03.855] [DEBUG] cheese - admin
+[2020-04-13T14:07:26.504] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:07:26.510] [DEBUG] cheese - admin
+[2020-04-13T14:07:49.224] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:07:49.227] [DEBUG] cheese - admin
+[2020-04-13T14:08:20.296] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:08:20.302] [DEBUG] cheese - admin
+[2020-04-13T14:08:50.103] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:08:50.108] [DEBUG] cheese - admin
+[2020-04-13T14:08:50.155] [DEBUG] cheese - null
+[2020-04-13T14:08:50.164] [DEBUG] cheese - null
+[2020-04-13T14:09:40.556] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:09:40.562] [DEBUG] cheese - admin
+[2020-04-13T14:09:40.596] [DEBUG] cheese - null
+[2020-04-13T14:09:40.598] [DEBUG] cheese - null
+[2020-04-13T14:10:49.056] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:10:49.059] [DEBUG] cheese - admin
+[2020-04-13T14:12:58.025] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:12:58.028] [DEBUG] cheese - admin
+[2020-04-13T14:12:58.071] [DEBUG] cheese - null
+[2020-04-13T14:12:58.073] [DEBUG] cheese - null
+[2020-04-13T14:14:01.464] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:14:01.487] [DEBUG] cheese - admin
+[2020-04-13T14:14:01.526] [DEBUG] cheese - null
+[2020-04-13T14:14:19.985] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:14:19.989] [DEBUG] cheese - admin
+[2020-04-13T14:14:20.023] [DEBUG] cheese - null
+[2020-04-13T14:14:45.450] [DEBUG] cheese - login => username:admin, password:123456
+[2020-04-13T14:14:45.453] [DEBUG] cheese - admin
+[2020-04-13T14:14:45.475] [DEBUG] cheese - null
+[2020-04-13T14:14:45.477] [DEBUG] cheese - null

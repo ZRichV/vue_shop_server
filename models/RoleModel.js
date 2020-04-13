@@ -7,7 +7,7 @@ module.exports = function (db, cb) {
         ps_ca: String,
         role_desc: String
     },{
-        tabel: "sp_role"
+        table: "sp_role"
     });
     return cb();
 }
