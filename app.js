@@ -4,19 +4,19 @@ var express = require('express');
 var path = require('path');//处理文件路径功能
 // var cookieParser = require('cookie-parser');
 // var logger = require('morgan');//日志请求中间件
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 //路由加载
 var mount = require('mount-routes')//根据路径来自动加载路由
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
-var resextra = require('./modules/resextra')
-var admin_passport = require('./modules/passport')
+var resextra = require('./modules/resextra');
+var admin_passport = require('./modules/passport');
 // 获取验证模块
 var authorization = require(path.join(process.cwd(), '/modules/authorization'));
 // var log4js = require('./modules/logger');
-var logistics = require('./modules/Logistics.js')
-var upload_config = require('config').get('upload_config')
-var ueditor = require(path.join(process.cwd(), '/modules/ueditor'))
+var logistics = require('./modules/Logistics.js');
+var upload_config = require('config').get('upload_config');
+var ueditor = require(path.join(process.cwd(), '/modules/ueditor'));
 // 获取管理员逻辑模块
 var loginService = require(path.join(process.cwd(), 'services/LoginService'));
 // 获取角色服务模块
@@ -69,9 +69,20 @@ app.all('/*', function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
   res.header('X-Powered-By', ' 3.2.1')
-  if (req.method == 'OPTIONS') res.send(200)
-  /*让options请求快速返回*/ else next()
+  if (req.method == 'OPTIONS') res.send(200);
+  /*让options请求快速返回*/ else next();
 });
+
+app.all('/ueditor/ue', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With, X_Requested_With')
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+  res.header('X-Powered-By', ' 3.2.1')
+  if (req.method == 'OPTIONS') res.send(200);
+  /*让options请求快速返回*/ else next();
+})
 
 // 初始化统一响应机制
 app.use(resextra);
@@ -80,9 +91,9 @@ app.use(resextra);
 // 设置登录模块的登录函数衔接 passport 策略
 admin_passport.setup(app, loginService.login);
 // 设置 passport 登录入口点
-app.use('/login', admin_passport.login);
+app.use('/api/shop/login', admin_passport.login);
 // 设置 passport 验证路径
-app.use('/*', admin_passport.tokenAuth);
+app.use('/api/shop/*', admin_passport.tokenAuth);
 
 // log4js.use(app);
 
@@ -118,7 +129,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(3000, function () {
-  console.log('port 3000 star!');
+  console.log('port 3000 start!');
 })
 
 module.exports = app;

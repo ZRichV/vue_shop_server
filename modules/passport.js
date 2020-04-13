@@ -1,5 +1,5 @@
 const passport = require('passport');
-const LocalStrategy = require('passpoet-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const Strategy = require('passport-http-bearer').Strategy;
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
@@ -21,8 +21,8 @@ module.exports.setup = function (app, loginFunc, callback) {
                 if (err) return done(err);
                 return done(null, user);
             });
-        }
-    ));
+        })
+    );
 
     //token 验证策略
     passport.use(new Strategy(

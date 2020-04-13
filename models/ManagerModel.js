@@ -1,4 +1,4 @@
-module.exports = function (db, cb) {
+module.exports = function (db, callback) {
     //用户模型：登录时用
     db.define("ManagerModel", {
         mg_id: { type: 'serial', key: true },
@@ -12,5 +12,5 @@ module.exports = function (db, cb) {
     }, {
         tabel: "sp_manager"
     });
-    return cb();
+    return callback();
 }

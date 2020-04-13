@@ -1,7 +1,7 @@
 module.exports = function(db,cb){
     //用户模型：权限验证
     db.define("PermissionAPIModel", {
-        id:{type: 'serial', key: trur},
+        id:{type: 'serial', key: true},
         ps_id: Number,
         ps_api_service: String,
         ps_api_action: String,
