@@ -7,7 +7,6 @@ var databaseModel = require(path.join(process.cwd(), "modules/database"));
  * @param {*} cb 
  */
 module.exports.list = function (cb) {
-    db = databaseModel.getDatabase();
     sql = "select * from sp_permission_api as api left join sp_permission as main on main.ps_id = api.ps_id where main.ps_id is not null";
     database.driver.execQuery(sql, function (err, result) {
         if (err) return cb("获取权限列表失败", null);

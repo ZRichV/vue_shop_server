@@ -113,17 +113,17 @@ app.use('/' + upload_config.get('upload_ueditor'), express.static(upload_config.
 // catch 404 and forward to error handler
 //捕捉404错误并进行错误处理
 app.use(function (req, res, next) {
-  next(createError(404));
+  res.sendResult(null, 404, 'Not Found');
 });
 
-// error handler
+//error handler
 //开发环境错误处理
 // app.use(function (err, req, res, next) {
 //   // set locals, only providing error in development
 //   res.locals.message = err.message;
 //   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-//   // render the error page
+//   render the error page
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
