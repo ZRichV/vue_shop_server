@@ -21,7 +21,7 @@ module.exports.getLeftMenus = function (userInfo, cb) {
                 if (permission.ps_level == 0) {
                     if (rid != 0) {
                         if (!keyRolePermissions[permission.ps_id])
-                            continue;;
+                            continue;
                     }
                     permissionRes[permission.ps_id] = {
                         "id": permission.ps_id,
@@ -39,9 +39,9 @@ module.exports.getLeftMenus = function (userInfo, cb) {
                 if (permission.ps_level == 1) {
                     if (rid != 0) {
                         if (!keyRolePermissions[permission.ps_id])
-                            continue;;
+                            continue;
                     }
-                    parentPermissionRes = permissionRes[permission.ps_id];
+                    parentPermissionRes = permissionRes[permission.ps_pid];
                     if (parentPermissionRes) {
                         parentPermissionRes.children.push({
                             "id": permission.ps_id,

@@ -27,7 +27,7 @@ module.exports.setup = function (app, loginFunc, callback) {
     //token 验证策略
     passport.use(new Strategy(
         function (token, done) {
-            jwt.verify(token, jwt_config.get("scretKey"), function (err, decode) {
+            jwt.verify(token, jwt_config.get("secretKey"), function (err, decode) {
                 if (err) {
                     return done("token验证错误");
                 }

@@ -38,17 +38,17 @@ module.exports.list = function (conditions, cb) {
  * @param {*} cb 
  */
 module.exports.selectByKey = function (key, offset, limit, cb) {
-    sql = "select * from sp_mamager as smg left join sp_role as sr on smg.role_id = sr.role_id";
+    sql = "select * from sp_manager as smg left join sp_role as sr on smg.role_id = sr.role_id";
     if (key) {
         sql += " where mg_name like ? limit ?,?";
-        databaseModule.driver.execQuery(sql, ["%" + key + "%", offset, limit], function (err, managers) {
+        database.driver.execQuery(sql, ["%" + key + "%", offset, limit], function (err, managers) {
             if (err) return cb("通过林俊杰的关键词获取管理员对象出错");
             cb(null, managers);
         });
     } else {
         sql += " limit ?,? ";
         database.driver.execQuery(sql, [offset, limit], function (err, managers) {
-            if (err) return cb("通过林俊杰的关键词获取管理员对象出错");
+            if (err) return cb("不通过林俊杰的关键词获取管理员对象出错");
             cb(null, managers);
         });
     }

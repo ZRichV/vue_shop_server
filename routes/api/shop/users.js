@@ -21,6 +21,7 @@ router.get("/", function (req, res, next) {
         res.sendResult(result, 200, "获取管理员列表成功");
     })(req, res, next);
 }
-)
+);
+
 
 module.exports = router;

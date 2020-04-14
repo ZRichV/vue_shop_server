@@ -16,8 +16,8 @@ var logger = require('../modules/logger').logger();
  * @param {*} cb 
  */
 module.exports.getAllManagers = function (conditions, cb) {
-	if (!conditions.papenum) return cb('pagenum 参数不对');
-	if (!conditions.papesize) return cb('pagesize 参数不对');
+	if (!conditions.pagenum) return cb('pagenum 参数不对');
+	if(!conditions.pagesize) return cb('pagesize 参数不对');
 
 	//通过关键词获取管理员数量
 	managerDao.countByKey(conditions["query"], function (err, count) {
@@ -36,7 +36,7 @@ module.exports.getAllManagers = function (conditions, cb) {
 			var retManagers = [];
 			for(idx in managers){
 				var manager = managers[idx];
-				var role_name = managers.role_name;
+				var role_name = manager.role_name;
 				if(!manager.role_id){
 					role_name = "超级管理员";
 				}
