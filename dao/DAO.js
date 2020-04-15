@@ -13,8 +13,8 @@ var logger = require('../modules/logger').logger();
  */
 module.exports.create = function (modelName, obj, cb) {
     var db = databaseModule.getDatabase();
-    var model = db.models[modelName];
-    model.create(obj, cb);
+    var Model = db.models[modelName];
+    Model.create(obj, cb);
 }
 
 /**
@@ -116,7 +116,7 @@ module.exports.list = function (modelName, conditions, cb) {
  * @param {*} conditions 
  * @param {*} cb 
  */
-module.exports.exist = function (modelName, conditions, cb) {
+module.exports.exists = function (modelName, conditions, cb) {
     var db = databaseModule.getDatabase();
     var Model = db.models[modelName];
     Model.exists(conditions, function (err, isExist) {
