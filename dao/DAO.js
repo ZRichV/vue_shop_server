@@ -84,7 +84,7 @@ module.exports.list = function (modelName, conditions, cb) {
             model = model.find();
         }
         if (conditions["offset"]) {
-            model = model.offset(conditions["offset"]);
+            model = model.offset(parseInt(conditions["offset"]));
         }
         if (conditions["limit"]) {
             model = model.limit(parseInt(conditions["limit"]));
