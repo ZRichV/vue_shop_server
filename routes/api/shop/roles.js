@@ -54,7 +54,7 @@ router.put("/:id", function (req, res, next) {
         "roleDesc": req.body.roleDesc
     }, function (err, result) {
         if (err) return res.sendResult(null, 400, err);
-        res.sendResult(result, 200, "获取成功");
+        res.sendResult(result, 201, "获取成功");
     })(req, res, next);
 });
 

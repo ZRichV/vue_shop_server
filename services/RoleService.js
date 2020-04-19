@@ -228,9 +228,9 @@ module.exports.deleteRoleRight = function (rid, deletedRightId, cb) {
  * @param {*} ib 
  * @param {*} cb 
  */
-module.exports.deleteRole = function (ib, cb) {
+module.exports.deleteRole = function (id, cb) {
     if (!id) return cb("角色ID不能为空");
-    if (!isNaN(parseInt(rid))) return cb("角色ID必须为数字");
+    if (isNaN(parseInt(id))) return cb("角色ID必须为数字");
     dao.destroy("RoleModel", id, function (err) {
         if (err) return cb("删除失败");
         cb(null, true);
