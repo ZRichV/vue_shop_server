@@ -1,0 +1,10 @@
+var _ = require('lodash');
+var path = require("path");
+var dao = require(path.join(process.cwd(), "dao/DAO"));
+var goodAttributeDao = require(path.join(process.cwd(), "dao/GoodAttributeDAO"));
+var orm = require("orm");
+var Promise = require("bluebird");
+var fs = require("fs");
+var gm = require("gm");
+var uniqid = require('uniqid');
+var upload_config = require('config').get("upload_config");

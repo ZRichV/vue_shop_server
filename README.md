@@ -790,8 +790,261 @@
 
 - 响应数据
 
+## 1.8. 商品管理
+
+### 1.8.1. 商品列表数据
+
+- 请求路径：goods
+- 请求方法：get
+- 请求参数
+
+| 参数名   | 参数说明     | 备注     |
+| -------- | ------------ | -------- |
+| query    | 查询参数     | 可以为空 |
+| pagenum  | 当前页码     | 不能为空 |
+| pagesize | 每页显示条数 | 不能为空 |
+
+- 响应参数
+
+| 参数名       | 参数说明     | 备注                                   |
+| ------------ | ------------ | -------------------------------------- |
+| total        | 总共商品条数 |                                        |
+| pagenum      | 当前商品页数 |                                        |
+| goods_id     | 商品 ID      |                                        |
+| goods_name   | 商品名称     |                                        |
+| goods_price  | 价格         |                                        |
+| goods_number | 数量         |                                        |
+| goods_weight | 重量         | 不能为空                               |
+| goods_state  | 商品状态     | 商品状态 0: 未通过 1: 审核中 2: 已审核 |
+| add_time     | 添加时间     |                                        |
+| upd_time     | 更新时间     |                                        |
+| hot_mumber   | 热销品数量   |                                        |
+| is_promote   | 是否是热销品 |                                        |
+
+- 响应数据
 
 
+
+### 1.8.2. 添加商品
+
+- 请求路径：goods
+- 请求方法：post
+- 请求参数
+
+| 参数名          | 参数说明                                          | 备注     |
+| --------------- | ------------------------------------------------- | -------- |
+| goods_name      | 商品名称                                          | 不能为空 |
+| goods_cat       | 以为','分割的分类列表                             | 不能为空 |
+| goods_price     | 价格                                              | 不能为空 |
+| goods_number    | 数量                                              | 不能为空 |
+| goods_weight    | 重量                                              | 不能为空 |
+| goods_introduce | 介绍                                              | 可以为空 |
+| pics            | 上传的图片临时路径（对象）                        | 可以为空 |
+| attrs           | 商品的参数（数组），包含 `动态参数` 和 `静态属性` | 可以为空 |
+
+- 请求数据
+
+
+
+- 响应参数
+
+| 参数名       | 参数说明                   | 备注                                                         |
+| ------------ | -------------------------- | ------------------------------------------------------------ |
+| total        | 总共商品条数               |                                                              |
+| pagenum      | 当前商品页数               |                                                              |
+| goods_id     | 商品 ID                    |                                                              |
+| goods_cat    | 以为','分割的分类列表      |                                                              |
+| goods_name   | 商品名称                   |                                                              |
+| goods_price  | 价格                       |                                                              |
+| goods_number | 数量                       |                                                              |
+| goods_weight | 重量                       | 不能为空                                                     |
+| goods_state  | 商品状态                   | 商品状态 0: 未通过 1: 审核中 2: 已审核                       |
+| add_time     | 添加时间                   |                                                              |
+| upd_time     | 更新时间                   |                                                              |
+| hot_mumber   | 热销品数量                 |                                                              |
+| is_promote   | 是否是热销品               |                                                              |
+| pics         | 上传的图片临时路径（对象） | pics_id:图片 ID,goods_id:商品 ID,pics_big:大图,pics_mid:中图,pics_sma:小图 |
+| attrs        | 商品的参数（数组）         | goods_id:商品 ID,attr_value:当前商品的参数值,add_price:浮动价格,attr_vals:预定义的参数值,attr_sel:手动输入，还是单选, |
+
+- 响应数据
+
+
+
+### 1.8.3. 根据 ID 查询商品
+
+- 请求路径：goods/:id
+- 请求方法：get
+- 请求参数
+
+| 参数名 | 参数说明 | 备注                  |
+| ------ | -------- | --------------------- |
+| id     | 商品 ID  | 不能为空`携带在url中` |
+
+- 响应参数
+
+| 参数名       | 参数说明                   | 备注                                                         |
+| ------------ | -------------------------- | ------------------------------------------------------------ |
+| total        | 总共商品条数               |                                                              |
+| pagenum      | 当前商品页数               |                                                              |
+| goods_id     | 商品 ID                    |                                                              |
+| goods_name   | 商品名称                   |                                                              |
+| goods_price  | 价格                       |                                                              |
+| goods_number | 数量                       |                                                              |
+| goods_weight | 重量                       | 不能为空                                                     |
+| goods_state  | 商品状态                   | 商品状态 0: 未通过 1: 审核中 2: 已审核                       |
+| add_time     | 添加时间                   |                                                              |
+| upd_time     | 更新时间                   |                                                              |
+| hot_mumber   | 热销品数量                 |                                                              |
+| is_promote   | 是否是热销品               |                                                              |
+| pics         | 上传的图片临时路径（对象） | pics_id:图片 ID,goods_id:商品 ID,pics_big:大图,pics_mid:中图,pics_sma:小图 |
+| attrs        | 商品的参数（数组）         | goods_id:商品 ID,attr_value:当前商品的参数值,add_price:浮动价格,attr_vals:预定义的参数值,attr_sel:手动输入，还是单选, |
+
+- 响应数据
+
+
+
+### 1.8.4. 编辑提交商品
+
+- 请求路径：goods/:id
+- 请求方法：put
+- 请求参数
+
+| 参数名          | 参数说明                   | 备注                  |
+| --------------- | -------------------------- | --------------------- |
+| id              | 商品 ID                    | 不能为空`携带在url中` |
+| goods_name      | 商品名称                   | 不能为空              |
+| goods_price     | 价格                       | 不能为空              |
+| goods_number    | 数量                       | 不能为空              |
+| goods_weight    | 重量                       | 不能为空              |
+| goods_introduce | 介绍                       | 可以为空              |
+| pics            | 上传的图片临时路径（对象） | 可以为空              |
+| attrs           | 商品的参数（数组）         | 可以为空              |
+
+- 请求数据
+
+- 响应参数
+
+| 参数名       | 参数说明                   | 备注                                                         |
+| ------------ | -------------------------- | ------------------------------------------------------------ |
+| total        | 总共商品条数               |                                                              |
+| pagenum      | 当前商品页数               |                                                              |
+| goods_id     | 商品 ID                    |                                                              |
+| goods_name   | 商品名称                   |                                                              |
+| goods_price  | 价格                       |                                                              |
+| goods_number | 数量                       |                                                              |
+| goods_weight | 重量                       | 不能为空                                                     |
+| goods_state  | 商品状态                   | 商品状态 0: 未通过 1: 审核中 2: 已审核                       |
+| add_time     | 添加时间                   |                                                              |
+| upd_time     | 更新时间                   |                                                              |
+| hot_mumber   | 热销品数量                 |                                                              |
+| is_promote   | 是否是热销品               |                                                              |
+| pics         | 上传的图片临时路径（对象） | pics_id:图片 ID,goods_id:商品 ID,pics_big:大图,pics_mid:中图,pics_sma:小图 |
+| attrs        | 商品的参数（数组）         | goods_id:商品 ID,attr_value:当前商品的参数值,add_price:浮动价格,attr_vals:预定义的参数值,attr_sel:手动输入，还是单选, |
+
+- 响应数据
+
+
+
+### 1.8.5. 删除商品
+
+- 请求路径：goods/:id
+- 请求方法：delete
+- 请求参数
+
+| 参数名 | 参数说明 | 备注                  |
+| ------ | -------- | --------------------- |
+| id     | 商品 ID  | 不能为空`携带在url中` |
+
+- 响应数据
+
+
+
+### 1.8.6. 同步商品图片
+
+- 请求路径：goods/:id/pics
+- 请求方法：put
+- 请求参数
+
+| 参数名 | 参数说明     | 备注                                                         |
+| ------ | ------------ | ------------------------------------------------------------ |
+| id     | 商品 ID      | 不能为空`携带在url中`                                        |
+| pics   | 商品图片集合 | 如果有 pics_id 字段会保留该图片，如果没有 pics_id 但是有 pic 字段就会新生成图片数据 |
+
+- 请求数据
+
+```
+;[
+  { pic: 'tmp_uploads/db28f6316835836e97653b5c75e418be.png' },
+  {
+    pics_id: 397,
+    goods_id: 145,
+    pics_big: 'uploads/goodspics/big_30f08d52c551ecb447277eae232304b8',
+    pics_mid: 'uploads/goodspics/mid_30f08d52c551ecb447277eae232304b8',
+    pics_sma: 'uploads/goodspics/sma_30f08d52c551ecb447277eae232304b8'
+  }
+]
+```
+
+- 响应数据
+
+
+
+### 1.8.7. 同步商品属性
+
+- 请求路径：goods/:id/attributes
+- 请求方法：put
+- 请求参数
+
+| 参数名 | 参数说明 | 备注                  |
+| ------ | -------- | --------------------- |
+| id     | 商品 ID  | 不能为空`携带在url中` |
+
+- 请求数据
+
+```
+;[
+  {
+    attr_id: 15,
+    attr_value: 'ddd'
+  },
+  {
+    attr_id: 15,
+    attr_value: 'eee'
+  }
+]
+```
+
+- 响应数据
+
+
+
+### 1.8.8. 商品图片处理必须安装 GraphicsMagick
+
+- linux
+
+```
+apt-get install GraphicsMagick
+```
+
+- Mac OS X
+
+```
+brew install GraphicsMagick
+```
+
+- Windows [点击下载](https://sourceforge.net/projects/graphicsmagick/files/graphicsmagick-binaries/1.3.27/GraphicsMagick-1.3.27-Q8-win64-dll.exe/download)
+
+## 1.9. 图片上传
+
+- 请求路径：upload
+- 请求方法：post
+- 请求参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+| file   | 上传文件 |      |
+
+- 响应数据
 
 
 
