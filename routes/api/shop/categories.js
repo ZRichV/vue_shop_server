@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
     if (!req.body.cat_name) return res.sendResult(nul, 400, '分类名称不能为空');
     next();
 }, function(req, res, next) {
-    catServ.addCategory({
+    catServ.addCat({
         "cat_pid": req.body.cat_pid,
         "cat_name": req.body.cat_name,
         "cat_level": req.body.cat_level
