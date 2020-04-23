@@ -18,10 +18,10 @@ var upload_config = require('config').get("upload_config");
  */
 function clipImage(srcPath, savePath, newWidth, newHeight) {
     return new Promise(function(resolve, reject) {
-        gm(srcPath).resize(newWidth, newHeight).autoOrient().write(savePath, function(err) {
-            if (err) reject(err);
-            resolve();
-        });
+        // gm(srcPath).resize(newWidth, newHeight).autoOrient().write(savePath, function(err) {
+        //     if (err) reject(err);
+        //     resolve();
+        // });
         readable = fs.createReadStream(srcPath);
         writable = fs.createWriteStream(savePath);
         readable.pipe(writable);
@@ -250,7 +250,7 @@ function updateGoodPics(info) {
             // 如果提交的新的数据中有老的数据的pics_id就说明保留数据，否则就删除
             _(oldpics).forEach(pic => {
                 if (newpicsKV[pic.pics_id]) {
-                    resolveOldPics.push(pic);
+                    reservedOldpics.push(pic);
                 } else {
                     delOldpics.puch(pic);
                 }
@@ -267,6 +267,8 @@ function updateGoodPics(info) {
             _(delOldpics).forEach(pic => {
                 // 1.1 删除图片的物理路径
                 batchFns.push(removeGoodPicFile(path.join(process.cwd(), pic.pics_big)));
+                batchFns.push(removeGoodPicFile(path.join(process.cwd(), pic.pics_mid)));
+                batchFns.push(removeGoodPicFile(path.join(process.cwd(), pic.pics_sma)));
                 // 1.2 数据库中删除图片数据记录
                 batchFns.push(removeGoodPic(pic));
             });
@@ -274,7 +276,7 @@ function updateGoodPics(info) {
             _(addNewpics).forEach(pic => {
                 if (!pic.pics_id && pic.pic) {
                     // 2.1 通过原始图片路径裁剪出需要的图片
-                    var scr = path.join(process.cwd(), pic.pic)
+                    var src = path.join(process.cwd(), pic.pic)
                     var tmp = src.split(path.sep);
                     var filename = tmp[tmp.length - 1];
                     pic.pics_big = "/uploads/goodspics/big_" + filename;
@@ -325,7 +327,7 @@ function updateGoodAttrs(info) {
         if (!info.attrs) return resolve(info);
         goodAttributeDao.clearGoodAttrs(good.goods_id, function(err) {
             if (err) return reject('清理原始的商品参数失败');
-            var newAttrs = infp.attrs ? info.attrs : [];
+            var newAttrs = info.attrs ? info.attrs : [];
             if (newAttrs) {
                 var createFns = [];
                 _(newAttrs).forEach(newAttr => {
@@ -434,7 +436,7 @@ module.exports.createGood = function(params, cb) {
  * @param {*} id 
  * @param {*} cb 
  */
-module.exports.deletedGood = function(id, cb) {
+module.exports.deleteGood = function(id, cb) {
     if (!id) return cb("商品ID不能为空");
     if (isNaN(id)) return cb('产品ID必须为数字');
     dao.update("GoodModel", id, {

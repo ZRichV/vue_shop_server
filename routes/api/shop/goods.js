@@ -90,7 +90,7 @@ router.put("/:id/attributes", function(req, res, next) {
     if (isNaN(parseInt(req.params.id))) return res.sendResult(null, 400, "商品ID必须是数字");
     next();
 }, function(req, res, next) {
-    goodServ.updateAttributes(req.params.id, req.body, function(err, good) {
+    goodServ.updateAttrs(req.params.id, req.body, function(err, good) {
         if (err) return res.sendResult(null, 400, err);
         res.sendResult(good, 200, "同步商品属性成功");
     })(req, res, next);
