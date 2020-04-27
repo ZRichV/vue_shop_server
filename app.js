@@ -16,14 +16,14 @@
  */
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');//处理文件路径功能
+var path = require('path'); //处理文件路径功能
 // var cookieParser = require('cookie-parser');
 // var logger = require('morgan');//日志请求中间件
 var bodyParser = require('body-parser');
 //路由加载
-var mount = require('mount-routes')//根据路径来自动加载路由
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+var mount = require('mount-routes') //根据路径来自动加载路由
+    // var indexRouter = require('./routes/index');
+    // var usersRouter = require('./routes/users');
 var resextra = require('./modules/resextra');
 var admin_passport = require('./modules/passport');
 // 获取验证模块
@@ -38,7 +38,7 @@ var loginService = require(path.join(process.cwd(), 'services/LoginService'));
 var roleService = require(path.join(process.cwd(), 'services/RoleService'));
 
 
-var app = express();//创建一个 Express 应用。express()是一个由express模块导出的入口（top-level）函数。
+var app = express(); //创建一个 Express 应用。express()是一个由express模块导出的入口（top-level）函数。
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));//设置views的目录,__dirname全局变量表示当前执行脚本所在的目录
@@ -59,23 +59,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // 初始化数据库
 var database = require('./modules/database');
-database.initialize(app, function (err) {
-  if (err) {
-    console.error('连接数据库失败 %s', err);
-  }
+database.initialize(app, function(err) {
+    if (err) {
+        console.error('连接数据库失败 %s', err);
+    }
 });
 
 // 设置跨域和相应数据格式
 app.all('/*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
-  res.setHeader('Content-Type', 'application/json;charset=utf-8')
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.header('X-Powered-By', ' 3.2.1')
-  if (req.method == 'OPTIONS') res.send(200);
-  /*让options请求快速返回*/ else next();
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
+    res.setHeader('Content-Type', 'application/json;charset=utf-8')
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
+    res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+    res.header('X-Powered-By', ' 3.2.1')
+    if (req.method == 'OPTIONS') res.send(200);
+    /*让options请求快速返回*/
+    else next();
 });
 
 //为了能够使用res.sendResult，这娘们要放在全局权限设置前面
@@ -92,26 +93,27 @@ app.use('/api/shop/login', admin_passport.login);
 app.use('/api/shop/*', admin_passport.tokenAuth);
 
 // 设置全局权限
-authorization.setAuthFn(function (req, res, next, serviceName, actionName, passFn) {
-  if (!req.userInfo || isNaN(parseInt(req.userInfo.rid))) return res.sendResult('无角色ID分配');
-  //验证权限
-  roleService.authRight(req.userInfo.rid, serviceName, actionName, function (err, pass) {
-    passFn(pass);
-  });
+authorization.setAuthFn(function(req, res, next, serviceName, actionName, passFn) {
+    if (!req.userInfo || isNaN(parseInt(req.userInfo.rid))) return res.sendResult('无角色ID分配');
+    //验证权限
+    roleService.authRight(req.userInfo.rid, serviceName, actionName, function(err, pass) {
+        passFn(pass);
+    });
 });
 
 // 带路径的用法并且可以打印出路由表
 mount(app, path.join(process.cwd(), '/routes'), true);
 
 app.all('/ueditor/ue', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With, X_Requested_With')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.header('X-Powered-By', ' 3.2.1')
-  if (req.method == 'OPTIONS') res.send(200);
-  /*让options请求快速返回*/ else next();
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, mytoken')
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization')
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With, X_Requested_With')
+    res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+    res.header('X-Powered-By', ' 3.2.1')
+    if (req.method == 'OPTIONS') res.send(200);
+    /*让options请求快速返回*/
+    else next();
 })
 
 // 富文本控件处理qing q
@@ -123,15 +125,15 @@ app.use('/x/common', express.static('uploads/common'));
 app.use('/uploads/goodspics', express.static('uploads/goodspics'));
 app.use('/' + upload_config.get('upload_ueditor'), express.static(upload_config.get('upload_ueditor')));
 //快递物流查询
-//app.get('/kuaidi/:orderno', logistics.getLogisticsInfo);
+app.get('/kuaidi/:orderno', logistics.getLogisticsInfo);
 
 // log4js.use(app);
 
 //原始的模块开始
 // catch 404 and forward to error handler
 //捕捉404错误并进行错误处理
-app.use(function (req, res, next) {
-  res.sendResult(null, 404, 'Not Found');
+app.use(function(req, res, next) {
+    res.sendResult(null, 404, 'Not Found');
 });
 
 //error handler
@@ -148,8 +150,8 @@ app.use(function (req, res, next) {
 //   });
 // });
 
-app.listen(3000, function () {
-  console.log('port 3000 start!');
+app.listen(3000, function() {
+    console.log('port 3000 start!');
 })
 
 module.exports = app;

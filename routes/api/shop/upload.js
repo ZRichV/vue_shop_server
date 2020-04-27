@@ -15,7 +15,7 @@ router.post("/", upload.single('file'), function(req, res, next) {
         if (err) {
             return res.sendResult(null, 400, "上传文件失败");
         }
-        res.sendResult({ "tmp_path": targetPath, "url": upload_config.get("baseURL") + "/" + targetPath }, 200, "上传失败");
+        res.sendResult({ "tmp_path": targetPath, "url": upload_config.get("baseURL") + "/" + targetPath }, 200, "上传成功");
     })
 });
 
