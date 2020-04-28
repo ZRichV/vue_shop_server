@@ -1131,4 +1131,14 @@ brew install GraphicsMagick
   ```json
  
   ```
+## 1.11. 数据统计
 
+### 1.11.1.  基于时间统计的折线图
+
+- 请求路径：reports/type/1
+
+- 请求方法：get
+
+- 响应数据
+
+- 需要合并的选项

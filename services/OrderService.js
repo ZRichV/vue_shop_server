@@ -80,7 +80,7 @@ function doCheckOrderParams(params) {
  * @param {*} info 
  */
 function doCreateOrder(info) {
-    return Promise(function(resolve, reject) {
+    return new Promise(function(resolve, reject) {
         dao.create('OrderModel', _.clone(info), function(err, newOrder) {
             if (err) return reject('创建订单失败');
             info.order = newOrder;
@@ -116,7 +116,7 @@ function doAddOrderGoods(info) {
             _(orderGoods).forEach(function(orderGood) {
                 orderGood.order_id = info.order_id;
                 orderGood.goods_total_price = goods_total_price;
-                fns.push(createOrderGood(orderGood));
+                fns.push(doCreateOrderGood(orderGood));
             });
             Promise.all(fns).then(function(results) {
                 info.order.goods = results;
@@ -153,7 +153,7 @@ function doGetAllOrderGoods(info) {
  */
 function doGetOrder(info) {
     return new Promise(function(resolve, reject) {
-        dao.show('OderModel', info.order_id, function(err, newOrder) {
+        dao.show('OrderModel', info.order_id, function(err, newOrder) {
             if (err) return reject('获取订单详情失败');
             if (!newOrder) return reject('订单ID不存在');
             info.order = newOrder;
@@ -258,7 +258,7 @@ module.exports.getAllOrders = function(params, cb) {
             var resultDate = {};
             resultDate['total'] = count;
             resultDate['pagenum'] = pagenum;
-            resultDate['goods'] = _.map(order, function(order) {
+            resultDate['goods'] = _.map(orders, function(order) {
                 return order;
             });
             cb(err, resultDate);
@@ -271,7 +271,7 @@ module.exports.getAllOrders = function(params, cb) {
  * @param {*} order 
  * @param {*} cb 
  */
-module.exports.getOrder = function(order, cb) {
+module.exports.getOrder = function(orderId, cb) {
     if (!orderId) return cb("用户ID不能为空");
     if (isNaN(parseInt(orderId))) return cb("用户ID必须是数字");
     doGetOrder({ 'order_id': orderId })
